@@ -1,0 +1,116 @@
+.gamePage{
+    width: 100%;
+    display: flex;
+    background-color: #8084b4;
+    height: 100vh;
+    justify-content: space-between;
+    padding: 2%;
+
+}
+
+.gameRight{
+    height: 100%;
+    width: 60%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.upperRight{
+    background-image: url("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRBzEcS3R6i9GTUQ8CJsXdYk-wDicWr-Q2ALljdG5hSd4T3hpd6");
+    height: 80%;
+}
+
+.stats{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    height: 50%;
+    background-color: #f4f4da;
+    justify-content: space-between;
+    margin-left: 4%;
+    margin-top: 4%;
+    border-radius: 10px;
+    box-shadow: 100px 100px 150px black;
+}
+
+.stats h3{
+    font-size: 0.8rem;
+}
+
+.topOfStats{
+    display: flex;
+    justify-content: space-between;
+}
+
+.opponentCon{
+    height: 48%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.gameChat{
+    width: 35%;
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nes-progress{
+    width: 70%;
+    align-self: flex-end;
+    height: 30%;
+}
+
+.characterCon{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    width: 45%;
+    height: 100%;
+}
+
+.oppIMG{
+    height: 80%;
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 2;
+}
+
+.backgroundIMG{
+    width: 80%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 1;
+}
+
+.bottomRight{
+    height: 18%;
+    display: flex;
+    justify-content: space-around;
+    padding: 2%;
+    padding-bottom: 2.5%;
+}
+
+.bottomRight button{
+    width: 21%;
+    height: 100%;
+}
+
+.userRight{
+    order: 2;
+    margin-right: 4%;
+}
+
+.userLeft{
+    order: 1;
+}
