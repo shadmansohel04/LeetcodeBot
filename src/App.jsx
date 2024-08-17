@@ -11,7 +11,6 @@ function App() {
       <Routes>
         <Route index element={<HomePage />} />
         <Route path='/lobby' element={<GameStart />} />
-        <Route path='/lobby/game' element={<GamePage />}/>
       </Routes>
     </BrowserRouter>
   );
