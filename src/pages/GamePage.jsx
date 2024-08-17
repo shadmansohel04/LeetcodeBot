@@ -4,13 +4,17 @@ import "../styles/pixelated.css"
 
 export default function GamePage(props){
     const [turn, setTurn] = useState(props.initialTurn)
+    const [health, setHealth] = useState(100)
+    const [opponentHealth, setOppHealth] = useState(props.opp)
 
     useEffect(()=>{
         setTurn(props.initialTurn)
+        setHealth((prev) => prev-props.todecrease)
+        setOppHealth(props.opp)
     }, [props.initialTurn])
 
     function actionButton(value){
-        props.turnFunc(value)
+        props.turnFunc(value, health)
     }
 
     return(
@@ -33,10 +37,10 @@ export default function GamePage(props){
                             <div className="stats pixel-corners">
                                 <div className="topOfStats">
                                     <h3>Isaac</h3>
-                                    <h3>Lv 100</h3>
+                                    <h3>Lv {opponentHealth}</h3>
                                 </div>
                                     {/* DYNAMICALLY CHANGE VALUE */}
-                                    <progress className="nes-progress is-success" value="100" max="100"></progress>
+                                    <progress className="nes-progress is-success" value={opponentHealth} max="100"></progress>
                             </div>
                             <div className="characterCon">
                                 <img src="./removed.png" className="backgroundIMG" alt="" />
@@ -48,10 +52,10 @@ export default function GamePage(props){
                             <div className="stats pixel-corners userRight">
                                 <div className="topOfStats">
                                     <h3>Isaac</h3>
-                                    <h3>Lv 100</h3>
+                                    <h3>Lv {health}</h3>
                                 </div>
                                     {/* DYNAMICALLY CHANGE VALUE */}
-                                    <progress className="nes-progress is-success" value="100" max="100"></progress>
+                                    <progress className="nes-progress is-success" value={health} max="100"></progress>
                             </div>
                             <div className="characterCon userLeft">
                                 <img src="./removed.png" className="backgroundIMG" alt="" />
@@ -61,10 +65,10 @@ export default function GamePage(props){
                     </div>
 
                     <div className="nes-container bottomRight">
-                        <button onClick={(e)=>{actionButton(e.currentTarget.textContent)}} type="button" className="nes-btn is-success">Move1</button>
-                        <button onClick={(e)=>{actionButton(e.currentTarget.textContent)}} type="button" className="nes-btn is-warning">Move2</button>
-                        <button onClick={(e)=>{actionButton(e.currentTarget.textContent)}} type="button" className="nes-btn is-error">Move3</button>
-                        <button onClick={(e)=>{actionButton(e.currentTarget.textContent)}} type="button" className="nes-btn is-primary">Primary</button>
+                        <button onClick={(e)=>{actionButton(e.currentTarget.textContent)}} type="button" className="nes-btn is-success">Punch</button>
+                        <button onClick={(e)=>{actionButton(e.currentTarget.textContent)}} type="button" className="nes-btn is-warning">Kick</button>
+                        <button onClick={(e)=>{actionButton(e.currentTarget.textContent)}} type="button" className="nes-btn is-error">Blast</button>
+                        <button onClick={(e)=>{actionButton(e.currentTarget.textContent)}} type="button" className="nes-btn is-primary">Special</button>
                     </div>
                 </div>
 

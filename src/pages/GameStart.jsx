@@ -3,12 +3,13 @@ import io from "socket.io-client";
 import GamePage from "./GamePage";
 
 export default function GameStart() {
-    const [message, setMessage] = useState("");
     const [socketId, setSocketId] = useState("");
     const [socket, setSocket] = useState(null);
     const [lobby, setLobby] = useState(true)
     const [game, setGame] = useState(false)
     const [player1, setplayer1] = useState(false)
+    const [decreaser, setDecreaser] = useState(null)
+    const [opp, setOpp] = useState(100)
 
     useEffect(() => {
         const newSocket = io.connect("http://192.168.2.220:3001");
@@ -20,12 +21,11 @@ export default function GameStart() {
             console.log(`Connected with socket ID: ${newSocket.id}`);
         });
 
-        newSocket.on("message", (data) => {
-            setMessage(data);
-        });
-
-        newSocket.on("yourTurn", ()=>{
+        newSocket.on("yourTurn", (data)=>{
             console.log("yay my turn")
+            console.log(data)
+            setDecreaser(data.damage)
+            setOpp(data.opp)
             setplayer1(true)
         })
 
@@ -53,9 +53,11 @@ export default function GameStart() {
         }
     }, [socket]);
 
-    function turn(value){
+    function turn(value, myHealth){
         setplayer1(false)
-        socket.emit("doTurn", {data: value, socketId: socketId})
+        // add leetcode value to data and then handle it on backend
+
+        socket.emit("doTurn", {data: value, socketId: socketId, myHealth: myHealth})
     }
 
     return (
@@ -64,10 +66,10 @@ export default function GameStart() {
                 <div>
                     <h1>Game Start</h1>
                     <p>Socket ID: {socketId}</p>
-                    <p>Message from server: {message}</p>
                 </div>
             )}
-            {game && <GamePage initialTurn={player1} turnFunc={turn}/>}
+
+            {game && <GamePage opp={opp} initialTurn={player1} todecrease={decreaser} turnFunc={turn}/>}
 
         </div>
         
