@@ -6,11 +6,21 @@ export default function GamePage(props){
     const [turn, setTurn] = useState(props.initialTurn)
     const [health, setHealth] = useState(100)
     const [opponentHealth, setOppHealth] = useState(props.opp)
+    const [oppData, setOppData] = useState(props.gendata)
+    const [mydata, setMydata] = useState(props.mydata)
 
     useEffect(()=>{
+        console.log(props.gendata)
+        console.log(props.mydata)
+
+        if (props.gendata != null) {
+            setOppData(props.gendata)
+        }
+
         setTurn(props.initialTurn)
         setHealth((prev) => prev-props.todecrease)
         setOppHealth(props.opp)
+        setMydata(props.mydata)
     }, [props.initialTurn])
 
     function actionButton(value){
@@ -36,7 +46,7 @@ export default function GamePage(props){
                         <div className="opponentCon oppDown">
                             <div className="stats pixel-corners">
                                 <div className="topOfStats">
-                                    <h3>Isaac</h3>
+                                    <h3>{oppData.name}</h3>
                                     <h3>Lv {opponentHealth}</h3>
                                 </div>
                                     {/* DYNAMICALLY CHANGE VALUE */}
@@ -44,14 +54,14 @@ export default function GamePage(props){
                             </div>
                             <div className="characterCon">
                                 <img src="./removed.png" className="backgroundIMG" alt="" />
-                                <img className="oppIMG" src="https://i.pinimg.com/originals/f4/bf/e5/f4bfe51902fe8230dffaa7e6df778476.png" alt="opponentIMG" />
+                                <img className="oppIMG" src={oppData.avatar} alt="opponentIMG" />
                             </div>
                         </div>
 
                         <div className="opponentCon">
                             <div className="stats pixel-corners userRight">
                                 <div className="topOfStats">
-                                    <h3>Isaac</h3>
+                                    <h3>{mydata.name}</h3>
                                     <h3>Lv {health}</h3>
                                 </div>
                                     {/* DYNAMICALLY CHANGE VALUE */}
@@ -59,7 +69,7 @@ export default function GamePage(props){
                             </div>
                             <div className="characterCon userLeft">
                                 <img src="./removed.png" className="backgroundIMG" alt="" />
-                                <img className="oppIMG" src="https://wallpapers.com/images/hd/bulbasaur-pokemon-png-44-qaedgoezgy9mij34.jpg" alt="opponentIMG" />
+                                <img className="oppIMG" src={mydata.avatar} alt="opponentIMG" />
                             </div>
                         </div>
                     </div>
@@ -68,11 +78,11 @@ export default function GamePage(props){
                         <button onClick={(e)=>{actionButton(e.currentTarget.textContent)}} type="button" className="nes-btn is-success">Punch</button>
                         <button onClick={(e)=>{actionButton(e.currentTarget.textContent)}} type="button" className="nes-btn is-warning">Kick</button>
                         <button onClick={(e)=>{actionButton(e.currentTarget.textContent)}} type="button" className="nes-btn is-error">Blast</button>
-                        <button onClick={(e)=>{actionButton(e.currentTarget.textContent)}} type="button" className="nes-btn is-primary">Special</button>
+                        <button onClick={(e)=>{actionButton(e.currentTarget.textContent)}} type="button" className="nes-btn is-primary">Smash</button>
                     </div>
                 </div>
 
-            </div>): <h1>WAIT</h1>}
+            </div>): <img className="backimag" src="./bac.png"/>}
 
         </div>
 

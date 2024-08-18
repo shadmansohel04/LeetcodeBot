@@ -11,8 +11,6 @@
 .gameRight{
     height: 100%;
     width: 60%;
-    background-repeat: no-repeat;
-    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -21,6 +19,8 @@
 .upperRight{
     background-image: url("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRBzEcS3R6i9GTUQ8CJsXdYk-wDicWr-Q2ALljdG5hSd4T3hpd6");
     height: 80%;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .stats{
@@ -114,3 +114,9 @@
 .userLeft{
     order: 1;
 }
+
+.backimag{
+    width: 100vw;
+    height: 100vh;
+}
+

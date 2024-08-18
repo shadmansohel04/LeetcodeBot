@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
 import GamePage from "./GamePage";
+import "../styles/lobby.css"
+import { useLocation } from "react-router-dom";
 
 export default function GameStart() {
+    const {state} = useLocation()
     const [socketId, setSocketId] = useState("");
     const [socket, setSocket] = useState(null);
     const [lobby, setLobby] = useState(true)
@@ -10,6 +13,7 @@ export default function GameStart() {
     const [player1, setplayer1] = useState(false)
     const [decreaser, setDecreaser] = useState(null)
     const [opp, setOpp] = useState(100)
+    const [oppdata, setoppdata] = useState(null)
 
     useEffect(() => {
         const newSocket = io.connect("http://192.168.2.220:3001");
@@ -19,15 +23,8 @@ export default function GameStart() {
             setSocketId(newSocket.id);
             localStorage.setItem("id", newSocket.id);
             console.log(`Connected with socket ID: ${newSocket.id}`);
+            newSocket.emit("sendOppInfo", {info: state, id:newSocket.id})
         });
-
-        newSocket.on("yourTurn", (data)=>{
-            console.log("yay my turn")
-            console.log(data)
-            setDecreaser(data.damage)
-            setOpp(data.opp)
-            setplayer1(true)
-        })
 
         return () => {
             newSocket.off("message");
@@ -47,6 +44,17 @@ export default function GameStart() {
                 setplayer1(true)
             })
 
+            socket.on("getOpp", (data) =>{
+                setoppdata(data.data)
+            })
+
+            socket.on("yourTurn", (data)=>{
+                setoppdata(data.genData)
+                setDecreaser(data.damage)
+                setOpp(data.opp)
+                setplayer1(true)
+            })
+
             return () => {
                 socket.off("sendTogame");
             };
@@ -57,19 +65,27 @@ export default function GameStart() {
         setplayer1(false)
         // add leetcode value to data and then handle it on backend
 
-        socket.emit("doTurn", {data: value, socketId: socketId, myHealth: myHealth})
+        socket.emit("doTurn", {data: value, socketId: socketId, myHealth: myHealth, me: state})
     }
 
     return (
         <div>
             {lobby && (
-                <div>
-                    <h1>Game Start</h1>
-                    <p>Socket ID: {socketId}</p>
+                <div className="lobbyCon">
+                    <h1>Lobby</h1>
+                    <div className="loadDot">
+                        <h2>Waiting For player 2</h2>
+                        <div className="loading">
+                            <span className="loading__dot"></span>
+                            <span className="loading__dot"></span>
+                            <span className="loading__dot"></span>
+                        </div>
+                    </div>
+                    <img src={state.avatar} alt="" />
                 </div>
             )}
 
-            {game && <GamePage opp={opp} initialTurn={player1} todecrease={decreaser} turnFunc={turn}/>}
+            {game && <GamePage mydata={state} gendata={oppdata} opp={opp} initialTurn={player1} todecrease={decreaser} turnFunc={turn}/>}
 
         </div>
         

@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import GamePage from './pages/GamePage';
 import GameStart from './pages/gameStart';
 import HomePage from './pages/homepage';
+import UserDash from './pages/dash';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route index element={<HomePage />} />
         <Route path='/lobby' element={<GameStart />} />
+        <Route path='/dash' element={<UserDash />}/>
       </Routes>
     </BrowserRouter>
   );
