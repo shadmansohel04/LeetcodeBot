@@ -44,6 +44,14 @@ export default function GameStart() {
                 setplayer1(true)
             })
 
+            socket.on("winner", ()=>{
+                alert("YOU WIN")
+            })
+
+            socket.on("loser", ()=>{
+                alert("YOU LOSE")
+            })
+
             socket.on("getOpp", (data) =>{
                 setoppdata(data.data)
             })
@@ -67,6 +75,10 @@ export default function GameStart() {
         socket.emit("doTurn", {data: value, socketId: socketId, myHealth: myHealth, me: state.allInfo, scoreInfo: state.scoreInfo})
     }
 
+    function gameover(loser){
+        socket.emit("gameOver", {data: loser})
+    }
+
     return (
         <div>
             {lobby && (
@@ -84,7 +96,7 @@ export default function GameStart() {
                 </div>
             )}
 
-            {game && <GamePage bars={state.scoreInfo} mydata={state.allInfo} gendata={oppdata} opp={opp} initialTurn={player1} todecrease={decreaser} turnFunc={turn}/>}
+            {game && <GamePage gameover={gameover} bars={state.scoreInfo} mydata={state.allInfo} gendata={oppdata} opp={opp} initialTurn={player1} todecrease={decreaser} turnFunc={turn}/>}
 
         </div>
         

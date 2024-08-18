@@ -28,6 +28,20 @@ export default function UserDash(){
                 smash: 70
             })
         }
+        console.log(state.leetUser)
+        
+        axios.post("http://192.168.2.220:3001/gettheScores", {
+            name: state.leetUser
+        }).then((response)=>{
+
+            setScore((prev) => ({
+                punch: prev.punch + parseInt(response.data.data.perc),
+                kick: prev.kick + parseInt(response.data.data.ranking),
+                smash: prev.smash + parseInt(response.data.data.solved),
+                blast: prev.blast
+            }));
+            
+        })
 
         const avIMG = data[Math.floor((Math.random() * data.length))]
         setAvatar(avIMG)

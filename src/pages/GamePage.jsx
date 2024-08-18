@@ -13,18 +13,13 @@ export default function GamePage(props){
 
     useEffect(()=>{
         if(health <= 0){
-            alert("you lose")
+            props.gameover(localStorage.getItem("id"))
             navigate("/")
             return
         }
-        else if(opponentHealth <= 0){
-            alert("you win")
-            navigate("/")
-        }
-    }, [health, opponentHealth])
+    }, [health])
 
     useEffect(()=>{
-        console.log(props.bars)
 
         if (props.gendata != null) {
             setOppData(props.gendata)
@@ -37,7 +32,20 @@ export default function GamePage(props){
     }, [props.initialTurn])
 
     function actionButton(value){
-        props.turnFunc(value, health)
+        const img = document.getElementsByClassName("meIMG")[0];
+        if (img) {
+            img.classList.add('shake');
+        
+            setTimeout(() => {
+                img.classList.remove("shake");
+                props.turnFunc(value, health)
+            }, 1000); 
+        }
+
+        else{
+            props.turnFunc(value, health)
+        }
+        
     }
 
     return(
@@ -79,12 +87,11 @@ export default function GamePage(props){
                                     <h3>{mydata.name}</h3>
                                     <h3>Lv {health}</h3>
                                 </div>
-                                    {/* DYNAMICALLY CHANGE VALUE */}
                                     <progress className="nes-progress is-success health" value={health} max="100"></progress>
                             </div>
                             <div className="characterCon userLeft">
                                 <img src="./removed.png" className="backgroundIMG" alt="" />
-                                <img className="oppIMG" src={mydata.avatar} alt="opponentIMG" />
+                                <img className="oppIMG meIMG" src={mydata.avatar} alt="opponentIMG" />
                             </div>
                         </div>
                     </div>
@@ -97,7 +104,7 @@ export default function GamePage(props){
                     </div>
                 </div>
 
-            </div>): <img className="backimag" src="./bac.png"/>}
+            </div>): <div> <img className="backimag" src="./bac.png"/> <h1 className="absolute">Waiting for your turn...</h1> </div>}
 
         </div>
 
