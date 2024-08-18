@@ -30,7 +30,7 @@ export default function UserDash(){
         }
         console.log(state.leetUser)
         
-        axios.post("http://192.168.2.220:3001/gettheScores", {
+        axios.post("http://HOST/gettheScores", {
             name: state.leetUser
         }).then((response)=>{
 
@@ -45,7 +45,7 @@ export default function UserDash(){
 
         const avIMG = data[Math.floor((Math.random() * data.length))]
         setAvatar(avIMG)
-        axios.post("http://192.168.2.220:3001/namebot", {
+        axios.post("http://HOST:3001/namebot", {
             name: state.leetUser
         })
         .then((response)=>{
@@ -84,7 +84,7 @@ export default function UserDash(){
 
                 
                 <div className="nes-container leftDash">
-                    <button type="button" onClick={()=>{window.location.href = `http://192.168.2.220:3001?name=${state.leetUser}`}} className="nes-btn is-error">LeetCode Question</button>
+                    <button type="button" onClick={()=>{window.location.href = `http://HOST:3001?name=${state.leetUser}`}} className="nes-btn is-error">LeetCode Question</button>
                     <button type="button" onClick={()=>{navigate("/lobby", {state: {allInfo, scoreInfo}})}} className="nes-btn is-success">Lobby</button>
                 </div>
             </div>
