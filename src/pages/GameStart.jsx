@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import io from "socket.io-client";
 import GamePage from "./GamePage";
 import "../styles/lobby.css"
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function GameStart() {
+    const nav = useNavigate()
     const {state} = useLocation()
     const [socketId, setSocketId] = useState("");
     const [socket, setSocket] = useState(null);
@@ -46,6 +47,7 @@ export default function GameStart() {
 
             socket.on("winner", ()=>{
                 alert("YOU WIN")
+                nav("/")
             })
 
             socket.on("loser", ()=>{

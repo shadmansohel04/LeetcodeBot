@@ -21,12 +21,12 @@ export default function UserDash(){
     useEffect(()=>{
         
         if(state != null && state.boost == true){
-            setScore({
-                punch: 70,
-                kick: 70,
-                blast: 70,
-                smash: 70
-            })
+            setScore((prev)=>({
+                smash: prev.smash + 20,
+                kick: prev.kick + 20,
+                blast: prev.blast + 20,
+                punch: prev.punch + 20
+            }))
         }
         console.log(state.leetUser)
         
