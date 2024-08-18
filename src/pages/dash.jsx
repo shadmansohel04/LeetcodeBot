@@ -84,7 +84,7 @@ export default function UserDash(){
 
                 
                 <div className="nes-container leftDash">
-                    <button type="button" onClick={()=>{window.location.href = "http://192.168.2.220:3001"}} className="nes-btn is-error">LeetCode Question</button>
+                    <button type="button" onClick={()=>{window.location.href = `http://192.168.2.220:3001?name=${state.leetUser}`}} className="nes-btn is-error">LeetCode Question</button>
                     <button type="button" onClick={()=>{navigate("/lobby", {state: {allInfo, scoreInfo}})}} className="nes-btn is-success">Lobby</button>
                 </div>
             </div>
