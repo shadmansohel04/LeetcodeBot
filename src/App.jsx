@@ -5,6 +5,7 @@ import GamePage from './pages/GamePage';
 import GameStart from './pages/gameStart';
 import HomePage from './pages/homepage';
 import UserDash from './pages/dash';
+import BoostPage from './pages/boostPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path='/lobby' element={<GameStart />} />
         <Route path='/dash' element={<UserDash />}/>
+        <Route path="/boost" element={<BoostPage/>} />
       </Routes>
     </BrowserRouter>
   );

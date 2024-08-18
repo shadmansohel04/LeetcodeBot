@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import "../styles/gamePage.css"
 import "../styles/pixelated.css"
+import { useNavigate } from "react-router-dom"
 
 export default function GamePage(props){
+    const navigate = useNavigate()
     const [turn, setTurn] = useState(props.initialTurn)
     const [health, setHealth] = useState(100)
     const [opponentHealth, setOppHealth] = useState(props.opp)
@@ -10,8 +12,19 @@ export default function GamePage(props){
     const [mydata, setMydata] = useState(props.mydata)
 
     useEffect(()=>{
-        console.log(props.gendata)
-        console.log(props.mydata)
+        if(health <= 0){
+            alert("you lose")
+            navigate("/")
+            return
+        }
+        else if(opponentHealth <= 0){
+            alert("you win")
+            navigate("/")
+        }
+    }, [health, opponentHealth])
+
+    useEffect(()=>{
+        console.log(props.bars)
 
         if (props.gendata != null) {
             setOppData(props.gendata)
@@ -32,13 +45,15 @@ export default function GamePage(props){
 
             {turn == true? (<div className="gamePage">
                 <div className="nes-container is-dark gameChat">
-                    <div className="chatloggs">
-                        <p>helo</p>
-                        <p>helo</p>
-                        <p>helo</p>
-                        <p>helo</p>
-                    </div>
-                    <button type="button" className="nes-btn is-primary">Primary</button>
+                        <h4>Your Attributes</h4>
+                        <h6>Punch: {props.bars.punch}</h6>
+                        <progress className="nes-progress bar" value={props.bars.punch} max="100"></progress>
+                        <h6>Kick: {props.bars.kick}</h6>
+                        <progress className="nes-progress is-primary bar" value={props.bars.kick} max="100"></progress>
+                        <h6>Blast {props.bars.blast}</h6>
+                        <progress className="nes-progress is-success bar" value={props.bars.blast} max="100"></progress>
+                        <h6>Smash {props.bars.smash}</h6>
+                        <progress className="nes-progress is-error bar" value={props.bars.smash} max="100"></progress>
                 </div>
 
                 <div className="gameRight">
@@ -50,7 +65,7 @@ export default function GamePage(props){
                                     <h3>Lv {opponentHealth}</h3>
                                 </div>
                                     {/* DYNAMICALLY CHANGE VALUE */}
-                                    <progress className="nes-progress is-success" value={opponentHealth} max="100"></progress>
+                                    <progress className="nes-progress is-success health" value={opponentHealth} max="100"></progress>
                             </div>
                             <div className="characterCon">
                                 <img src="./removed.png" className="backgroundIMG" alt="" />
@@ -65,7 +80,7 @@ export default function GamePage(props){
                                     <h3>Lv {health}</h3>
                                 </div>
                                     {/* DYNAMICALLY CHANGE VALUE */}
-                                    <progress className="nes-progress is-success" value={health} max="100"></progress>
+                                    <progress className="nes-progress is-success health" value={health} max="100"></progress>
                             </div>
                             <div className="characterCon userLeft">
                                 <img src="./removed.png" className="backgroundIMG" alt="" />

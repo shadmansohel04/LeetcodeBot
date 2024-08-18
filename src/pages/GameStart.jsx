@@ -23,7 +23,7 @@ export default function GameStart() {
             setSocketId(newSocket.id);
             localStorage.setItem("id", newSocket.id);
             console.log(`Connected with socket ID: ${newSocket.id}`);
-            newSocket.emit("sendOppInfo", {info: state, id:newSocket.id})
+            newSocket.emit("sendOppInfo", {info: state.allInfo, id:newSocket.id})
         });
 
         return () => {
@@ -63,9 +63,8 @@ export default function GameStart() {
 
     function turn(value, myHealth){
         setplayer1(false)
-        // add leetcode value to data and then handle it on backend
 
-        socket.emit("doTurn", {data: value, socketId: socketId, myHealth: myHealth, me: state})
+        socket.emit("doTurn", {data: value, socketId: socketId, myHealth: myHealth, me: state.allInfo, scoreInfo: state.scoreInfo})
     }
 
     return (
@@ -81,11 +80,11 @@ export default function GameStart() {
                             <span className="loading__dot"></span>
                         </div>
                     </div>
-                    <img src={state.avatar} alt="" />
+                    <img src={state.allInfo.avatar} alt="" />
                 </div>
             )}
 
-            {game && <GamePage mydata={state} gendata={oppdata} opp={opp} initialTurn={player1} todecrease={decreaser} turnFunc={turn}/>}
+            {game && <GamePage bars={state.scoreInfo} mydata={state.allInfo} gendata={oppdata} opp={opp} initialTurn={player1} todecrease={decreaser} turnFunc={turn}/>}
 
         </div>
         

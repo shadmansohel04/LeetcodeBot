@@ -1,13 +1,28 @@
 import { useState } from "react";
 import "../styles/homePage.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function HomePage() {
     const navigate = useNavigate();
+    const {state} = useLocation()
     const [leetUser, setLeetUser] = useState("");
 
+
     function dash() {
-        navigate("/dash", { state: leetUser});
+        let val
+        if(state != null){
+            val = {
+                leetUser,
+                boost: true
+            }
+        }
+        else{
+            val = {
+                leetUser,
+                boost: false
+            }
+        }
+        navigate("/dash", { state: val});
     }
 
     return (

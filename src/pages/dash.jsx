@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom"
+import { redirect, useLocation, useNavigate } from "react-router-dom"
 import "../styles/userdash.css"
 import data from "../assets/data"
 import { useEffect, useState } from "react"
@@ -11,12 +11,28 @@ export default function UserDash(){
     const [roboName, setRoboName] = useState("Creating Custom Bot Name...")
     const [avatar, setAvatar] = useState("")
     const [allInfo, setAllInfo] = useState({})
+    const [scoreInfo, setScore] = useState({
+        punch: 50,
+        kick: 50,
+        blast: 50,
+        smash: 50
+    })
 
     useEffect(()=>{
+        
+        if(state != null && state.boost == true){
+            setScore({
+                punch: 70,
+                kick: 70,
+                blast: 70,
+                smash: 70
+            })
+        }
+
         const avIMG = data[Math.floor((Math.random() * data.length))]
         setAvatar(avIMG)
         axios.post("http://192.168.2.220:3001/namebot", {
-            name: state
+            name: state.leetUser
         })
         .then((response)=>{
             if(response.data.success == true){
@@ -34,18 +50,18 @@ export default function UserDash(){
     
     return(
         <div className="userDash">
-            <h1>Hello {state}</h1>
+            <h1>Hello {state.leetUser}</h1>
             <div className="infoCon">
                 <div className="nes-container leftDash">
                     <h4>Your Attributes</h4>
-                    <h6>Punch</h6>
-                    <progress className="nes-progress" value={50} max="100"></progress>
-                    <h6>Kick</h6>
-                    <progress className="nes-progress is-primary" value={50} max="100"></progress>
-                    <h6>Blast</h6>
-                    <progress className="nes-progress is-success" value={50} max="100"></progress>
-                    <h6>Smash</h6>
-                    <progress className="nes-progress is-error" value={50} max="100"></progress>
+                    <h6>Punch: {scoreInfo.punch}</h6>
+                    <progress className="nes-progress" value={scoreInfo.punch} max="100"></progress>
+                    <h6>Kick: {scoreInfo.kick}</h6>
+                    <progress className="nes-progress is-primary" value={scoreInfo.kick} max="100"></progress>
+                    <h6>Blast {scoreInfo.blast}</h6>
+                    <progress className="nes-progress is-success" value={scoreInfo.blast} max="100"></progress>
+                    <h6>Smash {scoreInfo.smash}</h6>
+                    <progress className="nes-progress is-error" value={scoreInfo.smash} max="100"></progress>
                 </div>
                 <div className="middleDash">
                     <h3>{roboName}</h3>
@@ -54,8 +70,8 @@ export default function UserDash(){
 
                 
                 <div className="nes-container leftDash">
-                    <button type="button" onClick={()=>{navigate("/leetcodeQ")}} className="nes-btn is-error">LeetCode Question</button>
-                    <button type="button" onClick={()=>{navigate("/lobby", {state: allInfo})}} className="nes-btn is-success">Lobby</button>
+                    <button type="button" onClick={()=>{window.location.href = "http://192.168.2.220:3001"}} className="nes-btn is-error">LeetCode Question</button>
+                    <button type="button" onClick={()=>{navigate("/lobby", {state: {allInfo, scoreInfo}})}} className="nes-btn is-success">Lobby</button>
                 </div>
             </div>
 
