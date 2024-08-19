@@ -17,7 +17,7 @@ export default function GameStart() {
     const [oppdata, setoppdata] = useState(null)
 
     useEffect(() => {
-        const newSocket = io.connect("http://HOST:3001");
+        const newSocket = io.connect("http://10.16.146.160:3001");
         setSocket(newSocket);
 
         newSocket.on("connect", () => {
