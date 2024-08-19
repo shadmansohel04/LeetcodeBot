@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import GameStart from './pages/gameStart.jsx';
 import HomePage from './pages/homepage.jsx';
 import UserDash from './pages/dash.jsx';
 import BoostPage from './pages/boostPage.jsx';
+import GameStart from './pages/starter.jsx';
+
 
 function App() {
   return (

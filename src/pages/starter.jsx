@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
-import GamePage from "./GamePage";
+import GamePage from "./GamePage.jsx";
 import "../styles/lobby.css"
 import { useLocation, useNavigate } from "react-router-dom";
 
