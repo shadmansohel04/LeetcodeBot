@@ -1,4 +1,4 @@
-import { redirect, useLocation, useNavigate } from "react-router-dom"
+import {useLocation, useNavigate } from "react-router-dom"
 import "../styles/userdash.css"
 import data from "../assets/data"
 import { useEffect, useState } from "react"
@@ -39,8 +39,10 @@ export default function UserDash(){
                 kick: prev.kick + parseInt(response.data.data.ranking),
                 smash: prev.smash + parseInt(response.data.data.solved),
                 blast: prev.blast
-            }));
-            
+            }))
+        })
+        .catch((err)=>{
+            console.log(err)
         })
 
         const avIMG = data[Math.floor((Math.random() * data.length))]
