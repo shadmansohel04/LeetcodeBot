@@ -8,6 +8,11 @@
     background-image: url("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRBzEcS3R6i9GTUQ8CJsXdYk-wDicWr-Q2ALljdG5hSd4T3hpd6");
 }
 
+.userDash h1{
+    overflow-wrap: anywhere;
+}
+ 
+
 .infoCon{
     display: flex;
     justify-content: space-between;
@@ -70,6 +75,10 @@
     align-self: flex-end;
     align-items: center;
     text-align: center;
+}
+
+.middleDash{
+    overflow-wrap: anywhere;
 }
 
 @media(max-width: 768px){

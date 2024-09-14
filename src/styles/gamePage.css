@@ -28,7 +28,7 @@
     display: flex;
     flex-direction: column;
     padding: 2%;
-    height: 55%;
+    /* min-height: 50%; */
     background-color: #f4f4da;
     justify-content: space-between;
     margin-left: 4%;
@@ -39,11 +39,17 @@
 
 .stats h3{
     font-size: 0.8rem;
+    overflow-wrap:anywhere;
+    min-width: auto;
+    max-width: 60%;
+    width: fit-content;
 }
+
 
 .topOfStats{
     display: flex;
     justify-content: space-between;
+    gap: 20px;
 }
 
 .opponentCon{
@@ -63,7 +69,7 @@
 .health{
     width: 70%;
     align-self: flex-end;
-    height: 40%;
+    height: 30px;
 }
 
 .characterCon{
@@ -152,4 +158,62 @@
 
 .shake{
     animation: shake 0.2s infinite;
+}
+
+@media(max-width: 768px){
+    .gamePage{
+        flex-direction: column;
+        min-height: 130vh;
+    }
+
+    .gameRight{
+        width: auto;
+    }
+
+    .gameChat{
+        width: auto;
+        margin-bottom: 10%;
+    }
+    .upperRight{
+        padding: 2%;
+    }
+
+    .opponentCon{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .characterCon{
+        transform: translateX(80px);
+    }
+
+    .userLeft{
+        transform: translateX(-80px);
+    }
+
+    .stats{
+        min-width: 85%;
+        width: auto;
+        margin: 0;
+        min-height: 30%;
+        height: auto;
+    }
+
+    .bottomRight{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+        gap: 18px;
+    }
+
+    .bar{
+        min-height: 11px;
+    }
+
+    .health{
+        height: 15px;
+    }
+
+    .bottomRight button{
+        width: auto;
+    }
 }
