@@ -25,17 +25,24 @@ export default function HomePage() {
         navigate("/dash", { state: val});
     }
 
+    function enterKey(e){
+        if(e.key == "Enter"){
+            dash()
+        }
+    }
+
     return (
         <div className="HomePage">
             <h1>Welcome</h1>
-            <div className="nes-field is-inline darkBack">
-                <label htmlFor="dark_field">Input Leetcode Username</label>
-                <input
+            <div style={{flexDirection: "column"}} className="nes-field is-inline darkBack mobileHome">
+                <label style={{marginBottom: "5%"}} htmlFor="dark_field">Input Leetcode Username (if you have one)</label>
+                <input style={{width: "100%"}}
                     type="text"
                     className="nes-input is-dark"
                     placeholder="Name"
                     value={leetUser}
                     onChange={(e) => setLeetUser(e.target.value)}
+                    onKeyDown={(e)=>{enterKey(e)}}
                 />
             </div>
 

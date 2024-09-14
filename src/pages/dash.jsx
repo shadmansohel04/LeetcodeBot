@@ -7,6 +7,7 @@ import axios from "axios"
 export default function UserDash(){
     const navigate = useNavigate()
     const location = useLocation()
+    const [showLob, setShowLob] = useState(false)
     const {state} = location
     const [roboName, setRoboName] = useState("Creating Custom Bot Name...")
     const [avatar, setAvatar] = useState("")
@@ -28,12 +29,10 @@ export default function UserDash(){
                 punch: prev.punch + 20
             }))
         }
-        console.log(state.leetUser)
         
         axios.post("http://localhost:3000/gettheScores", {
             name: state.leetUser
         }).then((response)=>{
-
             setScore((prev) => ({
                 punch: prev.punch + parseInt(response.data.data.perc),
                 kick: prev.kick + parseInt(response.data.data.ranking),
@@ -58,6 +57,7 @@ export default function UserDash(){
                     avatar: avIMG.img,
                     leetinfo: 0
                 })
+                setShowLob(true)
             }
         })
         .catch(console.log("error"))        
@@ -74,9 +74,9 @@ export default function UserDash(){
                     <progress className="nes-progress" value={scoreInfo.punch} max="100"></progress>
                     <h6>Kick: {scoreInfo.kick}</h6>
                     <progress className="nes-progress is-primary" value={scoreInfo.kick} max="100"></progress>
-                    <h6>Blast {scoreInfo.blast}</h6>
+                    <h6>Blast: {scoreInfo.blast}</h6>
                     <progress className="nes-progress is-success" value={scoreInfo.blast} max="100"></progress>
-                    <h6>Smash {scoreInfo.smash}</h6>
+                    <h6>Smash: {scoreInfo.smash}</h6>
                     <progress className="nes-progress is-error" value={scoreInfo.smash} max="100"></progress>
                 </div>
                 <div className="middleDash">
@@ -85,9 +85,9 @@ export default function UserDash(){
                 </div>
 
                 
-                <div className="nes-container leftDash">
+                <div className="nes-container leftDash buttonGap">
                     <button type="button" onClick={()=>{window.location.href = `http://localhost:3000?name=${state.leetUser}`}} className="nes-btn is-error">LeetCode Question</button>
-                    <button type="button" onClick={()=>{navigate("/lobby", {state: {allInfo, scoreInfo}})}} className="nes-btn is-success">Lobby</button>
+                    {showLob == true? <button type="button" onClick={()=>{navigate("/lobby", {state: {allInfo, scoreInfo}})}} className="nes-btn is-success">Lobby</button> : null}
                 </div>
             </div>
 

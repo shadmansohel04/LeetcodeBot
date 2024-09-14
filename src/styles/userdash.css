@@ -18,6 +18,12 @@
     padding-right: 2%;
 }
 
+.infoCon h4{
+    font-size: 1.4vw;
+    text-align: center;
+    margin-bottom: 20%;
+}
+
 .leftDash{
     display: flex;
     flex-direction: column;
@@ -26,6 +32,17 @@
     align-items: center;
     justify-content: space-between;
     align-self: flex-end;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.buttonGap{
+    gap: 5%;
+}
+
+.leftDash button{
+    font-size: 1.2vw;
+    flex: 1;
 }
 
 .leftDash progress{
@@ -53,4 +70,64 @@
     align-self: flex-end;
     align-items: center;
     text-align: center;
+}
+
+@media(max-width: 768px){
+    .userDash{
+        padding-top: 10%;
+        height: fit-content;
+    }
+
+    .userDash h1{
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 10%;
+    }
+
+    .infoCon{
+        flex-direction: column;
+    }
+
+    .leftDash{
+        width: 100%;
+        margin-bottom: 10%;
+    }
+
+    .leftDash h4{
+        font-size: 1.4rem;
+        margin-bottom: 6%;
+    }
+
+    .leftDash h6{
+        font-size: 1.1rem;
+    }
+
+    .leftDash button{
+        margin-bottom: 5%;
+        font-size: 1rem;
+        height: 10vh;
+        margin: 0;
+        padding: 0;
+    }
+
+    .buttonGap{
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .leftDash progress{
+        height: 1.2rem;
+    }
+
+    .middleDash{
+        width: 100%;
+    }
+
+    .middleDash h3{
+        width: 90%;
+        font-size: 2rem;
+        overflow-wrap: break-word;
+        word-break: keep-all;
+    }
+
 }
