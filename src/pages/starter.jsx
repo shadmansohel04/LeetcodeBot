@@ -17,7 +17,7 @@ export default function GameStart() {
     const [oppdata, setoppdata] = useState(null)
 
     useEffect(() => {
-        const newSocket = io.connect("http://localhost:3000/");
+        const newSocket = io.connect("https://leetbotbackend.onrender.com/");
         setSocket(newSocket);
 
         newSocket.on("connect", () => {
