@@ -48,12 +48,12 @@ export default function GameStart() {
             })
 
             socket.on("winner", ()=>{
-                alert("YOU WIN")
+                console.log("winner")
                 nav("/")
             })
 
             socket.on("loser", ()=>{
-                alert("YOU LOSE")
+                console.log("LOSER")
             })
 
             socket.on("getOpp", (data) =>{
