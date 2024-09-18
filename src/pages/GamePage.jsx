@@ -12,7 +12,6 @@ export default function GamePage(props){
     const [mydata, setMydata] = useState(props.mydata)
 
     useEffect(()=>{
-        console.log(health)
         if(health <= 0){
             props.gameover()
             console.log("LOSER")
