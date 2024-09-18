@@ -49,6 +49,7 @@ export default function GameStart() {
 
             socket.on("winner", ()=>{
                 console.log("winner")
+                alert("YOU WIN")
                 nav("/lobby")
             })
 
@@ -75,8 +76,8 @@ export default function GameStart() {
         socket.emit("doTurn", {data: value, socketId: socketId, myHealth: myHealth, me: state.allInfo, scoreInfo: state.scoreInfo})
     }
 
-    function gameover(){
-        socket.emit("gameOver")
+    function gameover(id){
+        socket.emit("gameOver", {id: id})
     }
 
     return (
