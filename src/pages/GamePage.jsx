@@ -12,22 +12,24 @@ export default function GamePage(props){
     const [mydata, setMydata] = useState(props.mydata)
 
     useEffect(()=>{
+        console.log(health)
         if(health <= 0){
-            props.gameover(localStorage.getItem("id"))
-            console.log("gameOver")
+            props.gameover()
+            console.log("LOSER")
             navigate("/")
+            alert("YOU LOSE")
             return
         }
     }, [health])
 
     useEffect(()=>{
-
         if (props.gendata != null) {
             setOppData(props.gendata)
         }
-
         setTurn(props.initialTurn)
-        setHealth((prev) => prev-props.todecrease)
+        if(!turn){
+            setHealth((prev) => prev-props.todecrease)
+        }
         setOppHealth(props.opp)
         setMydata(props.mydata)
     }, [props.initialTurn])
