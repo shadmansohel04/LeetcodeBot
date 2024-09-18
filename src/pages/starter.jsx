@@ -48,8 +48,7 @@ export default function GameStart() {
             })
 
             socket.on("winner", (data)=>{
-                alert(data.data)
-                nav("/")
+                nav("/GAMEOVER", {state: data})
             })
 
             socket.on("getOpp", (data) =>{
@@ -75,8 +74,8 @@ export default function GameStart() {
         socket.emit("doTurn", {data: value, socketId: socketId, myHealth: myHealth, me: state.allInfo, scoreInfo: state.scoreInfo})
     }
 
-    function gameover(id){
-        socket.emit("gameOver", {name: id})
+    function gameover(id, avatar){
+        socket.emit("gameOver", {name: id, avatar: avatar})
     }
 
     return (

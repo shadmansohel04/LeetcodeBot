@@ -5,7 +5,7 @@ import HomePage from './pages/homepage.jsx';
 import UserDash from './pages/dash.jsx';
 import BoostPage from './pages/boostPage.jsx';
 import GameStart from './pages/starter.jsx';
-
+import GameEnd from './pages/gameEndPage.jsx';
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
         <Route path='/lobby' element={<GameStart />} />
         <Route path='/dash' element={<UserDash />}/>
         <Route path="/boost" element={<BoostPage/>} />
+        <Route path='/GAMEOVER' element={<GameEnd />}/>
       </Routes>
     </BrowserRouter>
   );

@@ -22,6 +22,7 @@ export default function HomePage() {
                 boost: false
             }
         }
+        localStorage.setItem("yourName", leetUser)
         navigate("/dash", { state: val});
     }
 
