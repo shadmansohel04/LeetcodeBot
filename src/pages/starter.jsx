@@ -49,8 +49,7 @@ export default function GameStart() {
 
             socket.on("winner", ()=>{
                 console.log("winner")
-                nav("/")
-                alert("YOU WIN")
+                nav("/lobby")
             })
 
             socket.on("getOpp", (data) =>{
