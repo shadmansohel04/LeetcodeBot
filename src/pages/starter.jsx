@@ -47,10 +47,9 @@ export default function GameStart() {
                 setplayer1(true)
             })
 
-            socket.on("winner", ()=>{
-                console.log("winner")
-                alert("YOU WIN")
-                nav("/lobby")
+            socket.on("winner", (data)=>{
+                alert(data.data)
+                nav("/")
             })
 
             socket.on("getOpp", (data) =>{
@@ -77,7 +76,7 @@ export default function GameStart() {
     }
 
     function gameover(id){
-        socket.emit("gameOver", {id: id})
+        socket.emit("gameOver", {name: id})
     }
 
     return (

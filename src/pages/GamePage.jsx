@@ -13,7 +13,7 @@ export default function GamePage(props){
 
     useEffect(()=>{
         if(health <= 0){
-            props.gameover(localStorage.getItem("id"))
+            props.gameover(oppData.name)
             console.log("LOSER")
             navigate("/")
             alert("YOU LOSE")
