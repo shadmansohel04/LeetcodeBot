@@ -3,7 +3,10 @@
     flex-direction: column;
     align-items: center;
     align-self: center;
-    background-color: beige;
+    /* background-color: beige; */
+    background-image: url("https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExczFlNWp3a2g1NnoxcjMyMWk3bGNvNmwzeXpnOXU4NGcwbHhoYzRwaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cmegx6SssTKmEFEcwj/giphy.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 100vw;
     height: 100vh;
     padding-top: 5%;
@@ -12,6 +15,8 @@
 .gameOverContinue h1{
     font-size: 4vw;
     overflow-wrap: anywhere;
+    color: white;
+    text-align: center;
 }
 
 .gameOverContinue img{
@@ -25,3 +30,22 @@
     padding-right: 40px;
 }
 
+@media(max-width: 768px){
+
+    .gameOverContinue{
+        justify-content: center;
+    }
+
+    .gameOverContinue h1{
+        font-size: 2rem;
+    }
+
+    .gameOverContinue img{
+        width: 60%;
+    }
+
+    .gameOverContinue button{
+        font-size: 1rem;
+    }
+
+}
