@@ -10,6 +10,20 @@ export default function GamePage(props){
     const [opponentHealth, setOppHealth] = useState(props.opp)
     const [oppData, setOppData] = useState(props.gendata)
     const [mydata, setMydata] = useState(props.mydata)
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+      };
+
+    useEffect(()=>{
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+
+    }, [])
 
     useEffect(()=>{
         if(health <= 0){
@@ -103,7 +117,7 @@ export default function GamePage(props){
                     </div>
                 </div>
 
-            </div>): <div> <img className="backimag" src="./bac.png"/> <h1 className="absolute">Waiting for your turn...</h1> </div>}
+            </div>): <div> <img className="backimag" src={windowWidth > 768?"./bac.jpg": "./mob.png"}/> <h1 className="absolute">Waiting for your turn...</h1> </div>}
 
         </div>
 
