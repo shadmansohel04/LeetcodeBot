@@ -66,6 +66,7 @@ export default function UserDash(){
     
     return(
         <div className="userDash">
+            <audio src="/music.mp3" autoPlay loop ></audio>
             <h1>Hello {state.leetUser}</h1>
             <div className="infoCon">
                 <div className="nes-container leftDash">
