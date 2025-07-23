@@ -18,7 +18,7 @@ export default function GameStart() {
 
     useEffect(() => {
         // const newSocket = io.connect("http://localhost:3000/");
-        const newSocket = io.connect("https://livechatproject-3498.onrender.com/");
+        const newSocket = io.connect("https://livechatproject-410t.onrender.com/");
 
         setSocket(newSocket);
 
