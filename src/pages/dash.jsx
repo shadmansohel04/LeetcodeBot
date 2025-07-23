@@ -30,7 +30,7 @@ export default function UserDash(){
             }))
         }
         
-        axios.post("https://livechatproject-3498.onrender.com/gettheScores", {
+        axios.post("https://livechatproject-410t.onrender.com/gettheScores", {
             name: state.leetUser
         }).then((response)=>{
             setScore((prev) => ({
@@ -46,7 +46,7 @@ export default function UserDash(){
 
         const avIMG = data[Math.floor((Math.random() * data.length))]
         setAvatar(avIMG)
-        axios.post("https://livechatproject-3498.onrender.com/namebot", {
+        axios.post("https://livechatproject-410t.onrender.com/namebot", {
             name: state.leetUser
         })
         .then((response)=>{
@@ -87,7 +87,7 @@ export default function UserDash(){
 
                 
                 <div className="nes-container leftDash buttonGap">
-                    <button type="button" onClick={()=>{window.location.href = `https://livechatproject-3498.onrender.com?name=${state.leetUser}`}} className="nes-btn is-error">LeetCode Question</button>
+                    <button type="button" onClick={()=>{window.location.href = `https://livechatproject-410t.onrender.com?name=${state.leetUser}`}} className="nes-btn is-error">LeetCode Question</button>
                     {showLob == true? <button type="button" onClick={()=>{navigate("/lobby", {state: {allInfo, scoreInfo}})}} className="nes-btn is-success">Lobby</button> : null}
                 </div>
             </div>
